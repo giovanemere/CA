@@ -128,10 +128,6 @@ echo "###################################################"
 
                   cat $folderInter/$interKey
 
-            echo  '-------------------------------------------------------------------------'
-            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
-            echo  '-------------------------------------------------------------------------'
-
             echo "##########"
             echo "CSR intermediate"
             echo "Fill in the Common Name!"
@@ -145,22 +141,22 @@ echo "###################################################"
 
                   cat $folderInter/$interCSR
 
-            echo  '-------------------------------------------------------------------------'
-            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
-            echo  '-------------------------------------------------------------------------'
-
             echo "##########"
             echo "SIGN intermediate"
             echo "##########"
                   
                   interCER="certs/intermediate.cert.pem"
 
-                  openssl ca -config $interOpenssl -extensions v3_intermediate_ca \
+                  openssl ca -config $caOpenssl -extensions v3_intermediate_ca \
                         -days 3650 -notext -md sha256 \
                         -in $folderInter/$interCSR \
                         -out $folderInter/$interCER
                   
                   chmod 700 $folderInter/$interCER
+
+                  echo  '-------------------------------------------------------------------------'
+                  read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+                  echo  '-------------------------------------------------------------------------'
 
                   interCHAIN="certs/ca-chain.cert.pem"
 
