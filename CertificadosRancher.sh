@@ -126,6 +126,8 @@ echo "###################################################"
                         -out $folderInter/$interKey 4096
                   chmod 700 $folderInter/$interKey
 
+                  cat $folderInter/$interKey
+
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
             echo  '-------------------------------------------------------------------------'
@@ -140,6 +142,8 @@ echo "###################################################"
                   openssl req -config $interOpenssl -new -sha256 \
                         -key $folderInter/$interKey \
                         -out $folderInter/$interCSR
+
+                  cat $folderInter/$interCSR
 
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
