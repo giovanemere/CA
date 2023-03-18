@@ -20,6 +20,8 @@ else
 ###################################################################################
 # Root pair
 ###################################################################################
+      
+      read -p "Press [Enter] key to continue  >> Proceso Limpieza..." readEnterKey
       #Limpieza Ambientes
       rm -rf $folderPath/*
 
