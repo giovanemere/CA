@@ -43,7 +43,7 @@ organizationName        = match
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
-subjectAltName          = supplied
+subjectAltName          = match
 
 [ policy_loose ]
 # Allow the intermediate CA to sign a more diverse range of certificates.
@@ -136,3 +136,8 @@ subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer
 keyUsage = critical, digitalSignature
 extendedKeyUsage = critical, OCSPSigning
+
+[alt_names]
+DNS.1 = aosintlabs.com
+DNS.2 = www.aosintlabs.com
+DNS.3 = rancher.aosintlabs.com
