@@ -153,14 +153,14 @@ echo "###################################################"
 
                   openssl ca -config $interOpenssl -extensions v3_intermediate_ca \
                         -days 3650 -notext -md sha256 \
-                        -in $folderInter/$interCSR\
+                        -in $folderInter/$interCSR \
                         -out $folderInter/$interCER
                   
                   chmod 700 $folderInter/$interCER
 
                   interCHAIN="certs/ca-chain.cert.pem"
 
-                  cat $ffolderInter/$interCER \
+                  cat $folderInter/$interCER \
                         $fileCA > $folderInter/$interCHAIN
                   chmod 700 $folderInter/$interCHAIN
 
