@@ -5,32 +5,28 @@
 # Variables Dinamicas
 ###################################################################################
 
-      dominio="$1"  #rancher.yourdomain.com
-      
-
-# Variables fijas
-
-      folderPath="$HOME/Certificados"
-      varCN="*.$dominio"
+      source  ./vars.sh
 
 echo "###################################################"
 echo " dominio: [$dominio] | folderPath: [$folderPath] | CN: [$varCN] "
 echo "###################################################"
 
-#Ayuda de Shell tagCreate
-if [[ -z $dominio ]];then
-      echo  '-------------------------------------------------------------------------'
-      echo  ' >>> Falta variable 1. dominio aosintlabs.com >>>>           '
-      echo  '-------------------------------------------------------------------------'
-      exit 1
-else
-
+#####################################################################################################
+# Seccion 2: Ayuda
+#####################################################################################################
+   #Ayuda de Shell Orquestador
+      if [[ -z $dominio ]]; # Si no se envia carpeta de repositorio de la aplicacion
+        then
+        echo  '-------------------------------------------------------------------------'
+        read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+        echo  '-------------------------------------------------------------------------'
+        exit 1
+    else
 ###################################################################################
 # Root pair
 ###################################################################################
       
-      read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
-      echo  '-------------------------------------------------------------------------'
+      
       #Limpieza Ambientes
       #rm -rf $folderPath/*
 
