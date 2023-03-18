@@ -121,7 +121,7 @@ echo "###################################################"
 
                   interKey="$folderInter/private/intermediate.key.pem"
 
-                  cd $folderPath/ca
+                  cd $folderInter
                   openssl genrsa -aes256 \
                         -out $folderInter/$interKey 4096
                   chmod 700 $folderInter/$interKey
