@@ -147,7 +147,7 @@ echo "###################################################"
                   
                   interCER="certs/intermediate.cert.pem"
 
-                  openssl ca -config $caOpenssl -extensions v3_intermediate_ca \
+                  openssl ca -config $interOpenssl -extensions v3_intermediate_ca \
                         -days 3650 -notext -md sha256 \
                         -in $folderInter/$interCSR \
                         -out $folderInter/$interCER
