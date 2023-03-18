@@ -44,9 +44,6 @@ echo "###################################################"
                   chmod 700 $folderCA/private
 
                   >$fileVars
-
-                  ls -ltr $folderCA/private
-                  cat $folderCA/private
                   echo  '-------------------------------------------------------------------------'
 
                   touch index.txt

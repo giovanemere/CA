@@ -1,10 +1,7 @@
 # OpenSSL intermediate CA configuration file.
 # Copy to `/root/ca/intermediate/openssl.cnf`.
 
-pwd
 source ../../envvars/folderInter.sh
-
-cat ../../envvars/folderInter.sh
 
 [ ca ]
 # `man ca`

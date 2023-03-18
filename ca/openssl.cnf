@@ -1,10 +1,7 @@
 # OpenSSL root CA configuration file.
 # Copy to `/root/ca/openssl.cnf`.
 
-pwd
 source ../envvars/folderCA.sh
-
-cat ../envvars/folderCA.sh
 
 [ ca ]
 # `man ca`
