@@ -74,7 +74,7 @@ stateOrProvinceName             = State or Province Name
 localityName                    = Locality Name                
 0.organizationName              = Organization Name            
 organizationalUnitName          = Organizational Unit Name     
-commonName                      = Common Name                  : intermedia.aossas.com, *.aosintlabs.com
+commonName                      = Common Name : intermedia.aossas.com, *.aosintlabs.com
 emailAddress                    = Email Address                 
 
 # Optionally, specify some defaults.
