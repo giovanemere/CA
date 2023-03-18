@@ -1,7 +1,10 @@
 # OpenSSL intermediate CA configuration file.
 # Copy to `/root/ca/intermediate/openssl.cnf`.
 
-source ../envvars/vars.sh
+pwd
+source ../../envvars/folderInter.sh
+
+cat ../../envvars/folderInter.sh
 
 [ ca ]
 # `man ca`
@@ -9,7 +12,7 @@ default_ca = CA_default
 
 [ CA_default ]
 # Directory and file locations.
-dir               = $folderPath/ca/intermediate
+dir               = $folderInter
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -18,8 +21,8 @@ serial            = $dir/serial
 RANDFILE          = $dir/private/.rand
 
 # The root key and root certificate.
-private_key       = $dir/private/intermediate.key.pem
-certificate       = $dir/certs/intermediate.cert.pem
+private_key       = $interKey
+certificate       = $interCER
 
 # For certificate revocation lists.
 crlnumber         = $dir/crlnumber
