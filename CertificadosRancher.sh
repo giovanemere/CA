@@ -227,7 +227,7 @@ clear
             
                   mkdir -p $folderCA/rancher/base64
                   cp $fileCA $folderCA/rancher/cacerts.pem
-                  cat $domainCert $interCER > $folderCA/rancher/cert.pem
+                  cat $domainCert $folderInter/$interCER > $folderCA/rancher/cert.pem
 
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
