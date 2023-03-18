@@ -9,8 +9,7 @@ echo " folderPath: [$folderPath] "
 echo "###################################################"
 
 #Ayuda de Shell tagCreate
-if [[ -z "$dominio" || -z "$varCN" || -z "$folderPath" ]]; # Si no se envia carpeta de repositorio de la aplicacion
-then
+if [ -z $dominio || -z $varCN || -z $folderPath ]; then
       echo  '-------------------------------------------------------------------------'
       echo  ' >>> Falta variable 1. dominio aosintlabs.com >>>>           '
       echo  '-------------------------------------------------------------------------'
