@@ -47,7 +47,7 @@ echo "###################################################"
                   echo  '-------------------------------------------------------------------------'
 
                   touch index.txt
-                  echo 1000 > seria
+                  echo 1000 > serial
                   
                   caOpenssl="$folderCA/openssl.cnf"
                   curl  https://raw.githubusercontent.com/giovanemere/CA/master/ca/openssl.cnf --output $caOpenssl
