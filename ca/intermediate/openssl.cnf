@@ -69,21 +69,21 @@ x509_extensions     = v3_ca
 
 [ req_distinguished_name ]
 # See <https://en.wikipedia.org/wiki/Certificate_signing_request>.
-countryName                     = Country Name (2 letter code) : CO
-stateOrProvinceName             = State or Province Name       : Colombia
-localityName                    = Locality Name                : Cundinamarca
+countryName                     = Country Name (2 letter code) 
+stateOrProvinceName             = State or Province Name       
+localityName                    = Locality Name                
 0.organizationName              = Organization Name            : TI 
-organizationalUnitName          = Organizational Unit Name     : Tecnologia
+organizationalUnitName          = Organizational Unit Name     
 commonName                      = Common Name                  : intermedia.aossas.com, *.aosintlabs.com
-emailAddress                    = Email Address                : edisson.zuniga@aossas.com
+emailAddress                    = Email Address                
 
 # Optionally, specify some defaults.
-countryName_default             = GB
-stateOrProvinceName_default     = England
-localityName_default            =
+countryName_default             = CO
+stateOrProvinceName_default     = Colombia
+localityName_default            = Cundinamarca
 0.organizationName_default      = Alice Ltd
-organizationalUnitName_default  =
-emailAddress_default            =
+organizationalUnitName_default  = Tecnologia
+emailAddress_default            = edisson.zuniga@aossas.com
 
 [ v3_ca ]
 # Extensions for a typical CA (`man x509v3_config`).
