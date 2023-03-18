@@ -104,8 +104,6 @@ echo "###################################################"
             cd $folderInter
             
             mkdir -p $folderInter/certs $folderInter/crl $folderInter/csr $folderInter/newcerts $folderInter/private $folderPath/envvars
-            echo "folderInter=$folderInter" >>$fileVars
-
             chmod 700 private
             
             touch index.txt
@@ -118,15 +116,15 @@ echo "###################################################"
             echo "##########"
             echo "KEY intermediate"
             echo "##########"
+                  cd $folderCA
 
                   interKey="private/intermediate.key.pem"
-
-                  cd $folderCA
+                  
                   openssl genrsa -aes256 \
-                        -out $interKey 4096
-                  chmod 700 $interKey
+                        -out $folderInter/$interKey 4096
+                  chmod 700 $folderInter/$interKey
 
-                  cat $interKey
+                  cat $folderInter/$interKey
 
             echo "##########"
             echo "CSR intermediate"
@@ -136,10 +134,10 @@ echo "###################################################"
                   interCSR="csr/intermediate.csr.pem"
 
                   openssl req -config $interOpenssl -new -sha256 \
-                        -key $interKey \
-                        -out $interCSR
+                        -key $folderInter/$interKey \
+                        -out $folderInter/$interCSR
 
-                  cat $interCSR
+                  cat $folderInter/$interCSR
 
             echo "##########"
             echo "SIGN intermediate"
@@ -149,10 +147,10 @@ echo "###################################################"
 
                   openssl ca -config $caOpenssl -extensions v3_intermediate_ca \
                         -days 3650 -notext -md sha256 \
-                        -in $interCSR \
-                        -out $interCER
+                        -in $folderInter/$interCSR \
+                        -out $folderInter/$interCER
                   
-                  chmod 700 $interCER
+                  chmod 700 $folderInter/$interCER
 
 
                   echo  '-------------------------------------------------------------------------'
@@ -161,9 +159,9 @@ echo "###################################################"
 
                   interCHAIN="certs/ca-chain.cert.pem"
 
-                  cat $interCER \
-                        $fileCA > $interCHAIN
-                  chmod 700 $interCHAIN
+                  cat $folderInter/$interCER \
+                        $fileCA > $folderInter/$interCHAIN
+                  chmod 700 $folderInter/$interCHAIN
 
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
