@@ -121,7 +121,7 @@ echo "###################################################"
 
                   interKey="private/intermediate.key.pem"
 
-                  cd $folderInter
+                  cd $folderCA
                   openssl genrsa -aes256 \
                         -out $folderInter/$interKey 4096
                   chmod 700 $folderInter/$interKey
@@ -147,7 +147,7 @@ echo "###################################################"
                   
                   interCER="certs/intermediate.cert.pem"
 
-                  openssl ca -config $interOpenssl -extensions v3_intermediate_ca \
+                  openssl ca -config $caOpenssl -extensions v3_intermediate_ca \
                         -days 3650 -notext -md sha256 \
                         -in $folderInter/$interCSR \
                         -out $folderInter/$interCER
