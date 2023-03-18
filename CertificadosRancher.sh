@@ -253,7 +253,7 @@ clear
       echo "Verify certificates"
       echo "##########"
             openssl verify -CAfile $fileCA \
-                  $interCER
+                  $folderInter/$interCER
             openssl verify -CAfile $interCHAIN \
                   $domainCert
 
