@@ -1,20 +1,21 @@
 #!/bin/bash
 # https://gist.github.com/superseb/175476a5a1ab82df74c7037162c64946
 #curl -o 3-node-certificate.yml https://raw.githubusercontent.com/rancher/rancher/master/rke-templates/3-node-certificate.yml
-###################################################################################
-# Variables Dinamicas
-###################################################################################
+
 clear
 
-source envvars/vars.sh
+      ###################################################################################
+      # Variables Dinamicas
+      ###################################################################################
+            source envvars/vars.sh
 
-echo "###################################################"
-echo " dominio: [$dominio] | folderPath: [$folderPath] | CN: [$varCN] "
-echo "###################################################"
+            echo "###################################################"
+            echo " dominio: [$dominio] | folderPath: [$folderPath] | CN: [$varCN] "
+            echo "###################################################"
 
-      #####################################################################################################
+      ###################################################################################
       # Seccion 2: Ayuda
-      #####################################################################################################
+      ###################################################################################
             if [[ -z $dominio ]]; # Si no se envia carpeta de repositorio de la aplicacion
                   then
                   echo  '-------------------------------------------------------------------------'
@@ -152,11 +153,6 @@ echo "###################################################"
                   
                   chmod 700 $folderInter/$interCER
 
-
-                  echo  '-------------------------------------------------------------------------'
-                  read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
-                  echo  '-------------------------------------------------------------------------'
-
                   interCHAIN="certs/ca-chain.cert.pem"
 
                   cat $folderInter/$interCER \
@@ -179,42 +175,76 @@ echo "###################################################"
             echo "##########"
             echo "KEY certificate"
             echo "##########"
+                  
+                  domainKey="$folderInter/private/$dominio.key.pem"
+                  
                   openssl genrsa -aes256 \
-                        -out $folderInter/private/$dominio 2048
-                  chmod 700 $folderInter/private/$dominio.key.pem
+                        -out $domainKey 2048
+                  chmod 700 $domainKey
+
+                  cat $domainKey
+
+            echo  '-------------------------------------------------------------------------'
+            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+            echo  '-------------------------------------------------------------------------'
 
             echo "##########"
             echo "CSR certificate"
             echo "Use rancher.yourdomain.com as Common Name"
             echo "##########"
+                  
+                  domainCSR="$folderInter/csr/$dominio.csr.pem"
+                  
                   openssl req -config $interOpenssl \
-                        -key $folderInter/private/$dominio.key.pem \
-                        -new -sha256 -out $folderInter/csr/$dominio.csr.pem
+                        -key $domainKey \
+                        -new -sha256 -out $domainCSR
+
+                  cat $domainCSR
+            echo  '-------------------------------------------------------------------------'
+            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+            echo  '-------------------------------------------------------------------------'
             
             echo "##########"
             echo "SIGN certificate"
             echo "##########"
+                  
+                  domainCert="$folderInter/certs/$dominio.cert.pem"
                   openssl ca -config $interOpenssl \
                         -extensions server_cert -days 375 -notext -md sha256 \
-                        -in $folderInter/csr/$dominio.csr.pem \
-                        -out $folderInter/certs/$dominio.cert.pem
-                  chmod 700 $folderInter/certs/$dominio.cert.pem
+                        -in $domainCSR \
+                        -out $domainCert
+                  chmod 700 $domainCert
+
+                  cat $domainCert
+            
+            echo  '-------------------------------------------------------------------------'
+            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+            echo  '-------------------------------------------------------------------------'
 
             echo "##########"
             echo "Create files to be used for Rancher"
             echo "##########"
             
                   mkdir -p $folderCA/rancher/base64
-                  cp $folderCA/certs/ca.cert.pem $folderCA/rancher/cacerts.pem
-                  cat $folderInter/certs/$dominio.cert.pem $folderInter/certs/intermediate.cert.pem > $folderCA/rancher/cert.pem
+                  cp $fileCA $folderCA/rancher/cacerts.pem
+                  cat $domainCert $interCER > $folderCA/rancher/cert.pem
+
+            echo  '-------------------------------------------------------------------------'
+            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+            echo  '-------------------------------------------------------------------------'
             
             echo "##########"
             echo "Removing passphrase from Rancher certificate key"
             echo "##########"
-                  openssl rsa -in $folderInter/private/$dominio.key.pem -out $folderCA/rancher/key.pem
+                  openssl rsa -in $domainKey -out $folderCA/rancher/key.pem
+
                   cat $folderCA/rancher/cacerts.pem | base64 -w0 > $folderCA/rancher/base64/cacerts.base64
                   cat $folderCA/rancher/cert.pem | base64 -w0 > $folderCA/rancher/base64/cert.base64
                   cat $folderCA/rancher/key.pem | base64 -w0 > $folderCA/rancher/base64/key.base64
+
+            echo  '-------------------------------------------------------------------------'
+            read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
+            echo  '-------------------------------------------------------------------------'
 
 ###################################################################################
 # Paso Final
@@ -222,9 +252,9 @@ echo "###################################################"
       echo "##########"
       echo "Verify certificates"
       echo "##########"
-            openssl verify -CAfile $folderPath/certs/ca.cert.pem \
-                  $folderInter/certs/intermediate.cert.pem
+            openssl verify -CAfile $fileCA \
+                  $interCER
             openssl verify -CAfile $interCHAIN \
-                  $folderInter/certs/$dominio.cert.pem
+                  $domainCert
 
 fi
