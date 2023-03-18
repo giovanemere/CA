@@ -9,7 +9,7 @@ echo " dominio: [$dominio] | folderPath: [$folderPath] | CN: [$varCN] "
 echo "###################################################"
 
 #Ayuda de Shell tagCreate
-if [[ -z $dominio ]]; then
+if [[ -z $dominio ]];then
       echo  '-------------------------------------------------------------------------'
       echo  ' >>> Falta variable 1. dominio aosintlabs.com >>>>           '
       echo  '-------------------------------------------------------------------------'
@@ -23,7 +23,7 @@ else
       read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
       echo  '-------------------------------------------------------------------------'
       #Limpieza Ambientes
-      rm -rf $folderPath/*
+      #rm -rf $folderPath/*
 
       mkdir -p $folderPath/ca
       cd $folderPath/ca
