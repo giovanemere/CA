@@ -5,7 +5,7 @@
 # Variables Dinamicas
 ###################################################################################
 
-      source  ./vars.sh
+   source envvars/vars.sh
 
 echo "###################################################"
 echo " dominio: [$dominio] | folderPath: [$folderPath] | CN: [$varCN] "
