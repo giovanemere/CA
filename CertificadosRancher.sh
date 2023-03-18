@@ -5,7 +5,7 @@
 source vars.sh
 
 echo "###################################################"
-echo " folderPath: [$folderPath] "
+echo " dominio: [$dominio] | folderPath: [$folderPath] | CN: [$varCN] "
 echo "###################################################"
 
 #Ayuda de Shell tagCreate
