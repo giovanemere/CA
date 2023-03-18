@@ -21,7 +21,7 @@ else
 # Root pair
 ###################################################################################
       
-      read -p "Press [Enter] key to continue  >> Proceso Limpieza..." readEnterKey
+      read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
       #Limpieza Ambientes
       rm -rf $folderPath/*
 
