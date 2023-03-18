@@ -159,6 +159,8 @@ clear
                         $fileCA > $folderInter/$interCHAIN
                   chmod 700 $folderInter/$interCHAIN
 
+                  cat $folderInter/$interCHAIN
+
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
             echo  '-------------------------------------------------------------------------'
@@ -254,7 +256,7 @@ clear
       echo "##########"
             openssl verify -CAfile $fileCA \
                   $folderInter/$interCER
-            openssl verify -CAfile $interCHAIN \
+            openssl verify -CAfile $folderInter/$interCHAIN\
                   $domainCert
 
 fi
