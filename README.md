@@ -10,6 +10,9 @@ chmod +x CertificadosRancher.sh
 
 Siga instrucciones
 
-Todos los certificados quedan en 
+Todos los certificados quedan en
 
 /home/giovanemere/Certificados/ca/rancher/
+
+
+Banco123*
