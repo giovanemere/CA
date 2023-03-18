@@ -1,8 +1,6 @@
 # OpenSSL root CA configuration file.
 # Copy to `/root/ca/openssl.cnf`.
 
-source ../envvars/folderCA.sh
-
 [ ca ]
 # `man ca`
 default_ca = CA_default

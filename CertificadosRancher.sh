@@ -81,14 +81,14 @@ echo "###################################################"
                   cat $fileCA
 
             # Almacenar Variables
-                  echo "folderCA=$folderCA" >>$fileVars
-                  echo "fileKeyCA=$fileKeyCA" >>$fileVars
-                  echo "fileCA=$fileCA" >>$fileVars
+                  #echo "folderCA=$folderCA" >>$fileVars
+                  #echo "fileKeyCA=$fileKeyCA" >>$fileVars
+                  #echo "fileCA=$fileCA" >>$fileVars
 
-                  echo  '-------------------------------------------------------------------------'
-                  echo  ' Lectura Archivo Variables '
-                  echo  '-------------------------------------------------------------------------'
-                  cat -b $fileVars
+                  #echo  '-------------------------------------------------------------------------'
+                  #echo  ' Lectura Archivo Variables '
+                  #echo  '-------------------------------------------------------------------------'
+                  #cat -b $fileVars
 
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
@@ -158,9 +158,9 @@ echo "###################################################"
 
             
             #Almacenar Variables
-                  echo "interCER=$interCER" >>$fileVars
-                  echo "interKey=$interKey" >>$fileVars
-                  echo "interCSR=$interCSR" >>$fileVars
+                  #echo "interCER=$interCER" >>$fileVars
+                  #echo "interKey=$interKey" >>$fileVars
+                  #echo "interCSR=$interCSR" >>$fileVars
 
       ###################################################################################
       # Create Certificate
