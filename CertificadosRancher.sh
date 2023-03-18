@@ -123,10 +123,10 @@ echo "###################################################"
 
                   cd $folderCA
                   openssl genrsa -aes256 \
-                        -out $folderInter/$interKey 4096
-                  chmod 700 $folderInter/$interKey
+                        -out $interKey 4096
+                  chmod 700 $interKey
 
-                  cat $folderInter/$interKey
+                  cat $interKey
 
             echo "##########"
             echo "CSR intermediate"
@@ -136,10 +136,10 @@ echo "###################################################"
                   interCSR="csr/intermediate.csr.pem"
 
                   openssl req -config $interOpenssl -new -sha256 \
-                        -key $folderInter/$interKey \
-                        -out $folderInter/$interCSR
+                        -key $interKey \
+                        -out $interCSR
 
-                  cat $folderInter/$interCSR
+                  cat $interCSR
 
             echo "##########"
             echo "SIGN intermediate"
@@ -149,10 +149,11 @@ echo "###################################################"
 
                   openssl ca -config $caOpenssl -extensions v3_intermediate_ca \
                         -days 3650 -notext -md sha256 \
-                        -in $folderInter/$interCSR \
-                        -out $folderInter/$interCER
+                        -in $interCSR \
+                        -out $interCER
                   
-                  chmod 700 $folderInter/$interCER
+                  chmod 700 $interCER
+
 
                   echo  '-------------------------------------------------------------------------'
                   read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
@@ -160,9 +161,9 @@ echo "###################################################"
 
                   interCHAIN="certs/ca-chain.cert.pem"
 
-                  cat $folderInter/$interCER \
-                        $fileCA > $folderInter/$interCHAIN
-                  chmod 700 $folderInter/$interCHAIN
+                  cat $interCER \
+                        $fileCA > $interCHAIN
+                  chmod 700 $interCHAIN
 
             echo  '-------------------------------------------------------------------------'
             read -p "Press [Enter] key to continue  >> Proceso Limpieza... o CTRL + C para salir" readEnterKey
