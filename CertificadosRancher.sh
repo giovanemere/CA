@@ -1,5 +1,5 @@
 #!/bin/bash
-# z<
+# https://gist.github.com/superseb/175476a5a1ab82df74c7037162c64946
 #curl -o 3-node-certificate.yml https://raw.githubusercontent.com/rancher/rancher/master/rke-templates/3-node-certificate.yml
 ###################################################################################
 # Variables Dinamicas
